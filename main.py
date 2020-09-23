@@ -8,27 +8,30 @@ from spotdl import util, Spotdl
 
 
 util.install_logger(logging.INFO)
-os.system('cls')
+
 liste = []
 args = {}
 file_name = "tracks.txt"
 
+def Display():
+    os.system('cls')
+    print('''
 
-print('''
+        -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 
-    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+            Welcome To Spotify Songs Downloader
 
-        Welcome To Spotify Songs Downloader
+        -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 
-    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+            Press 1). Download Track by url
+            Press 2). Download Album by url
+            Press 3). Download Playlist by url
+            Press 4). Download Song by search
+            Press 5). To display menu
+            Press 6). Exit
+                    ''')
 
-        Press 1). Download Track by url
-        Press 2). Download Album by url
-        Press 3). Download Playlist by url
-        Press 4). Download Song by search
-        Press 5). To display menu
-        Press 6). Exit
-                ''')
+Display()
 
 while(1):
     inp = int(input("Enter your choice: "))
@@ -54,7 +57,7 @@ while(1):
             print(all_songs['name'] + ' - ' + all_songs['label'])
             spotify_tools.write_album_tracks(all_songs, file_name)
             spotdl_handler.download_tracks_from_file(file_name)
-            os.system('del' + file_name)
+            os.system('del ' + file_name)
         ch = str(input("Want to exit the program? Press[y/N]: "))
         if ch == 'y' or ch == 'Y':
             break
@@ -68,10 +71,10 @@ while(1):
         with Spotdl() as spotdl_handler:
             spotify_tools = SpotifyHelpers()
             all_songs = spotify_tools.fetch_playlist(url)
-            print(all_songs['name'] + ' - ' + all_songs['label'])
+            print(all_songs['name'])
             spotify_tools.write_playlist_tracks(all_songs, file_name)
             spotdl_handler.download_tracks_from_file(file_name)
-            os.system('del' + file_name)
+            os.system('del ' + file_name)
         ch = str(input("Want to exit the program? Press[y/N]: "))
         if ch == 'y' or ch == 'Y':
             break
@@ -91,21 +94,6 @@ while(1):
         else:
             continue
     if inp == 5:
-        os.system('cls')
-        print('''
-
-    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-
-        Welcome To Spotify Songs Downloader 
-                
-    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-                
-        Press 1). Download Track by url
-        Press 2). Download Album by url 
-        Press 3). Download Playlist by url
-        Press 4). Download Song by search
-        Press 5). To display menu
-        Press 6). Exit
-                ''')
+        Display()
     if inp == 6:
         break
